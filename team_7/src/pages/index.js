@@ -1,39 +1,8 @@
-import Head from "next/head"
-import Image from "next/image"
-// import { Inter } from "next/font/google"
 import styles from "@/styles/Home.module.css"
-import { useEffect, useState } from "react"
 import Link from "next/link"
 
-// const inter = Inter({ subsets: ["latin"] })
-
-export default function Home() {
-  //store the latest movies
-  const [latestMovies, setLatestMovies] = useState([])
-  //options for the fetch request
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjMjcxYTRhY2NkMGUwY2I0NzBmYWZkMjlhMmJjOTZjNiIsInN1YiI6IjY1NjYwODU3YTM0OTExMDExYjU5MTk2YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Bd7zqZOCEOyovLHdwMIyHB6BX_EgPzxw6JCCTiLNriQ",
-    },
-  }
-
-  async function getLatestMovies() {
-    const resp = await fetch(
-      "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1",
-      options,
-    )
-    const data = await resp.json()
-    setLatestMovies([...data.results])
-  }
-
-  useEffect(() => {
-    getLatestMovies()
-  }, [])
-  let movies
-  movies = latestMovies.map((movie, index) => {
+export default function Home({ latestMovies }) {
+  const movies = latestMovies.map((movie, index) => {
     return (
       <div
         key={index}
@@ -80,4 +49,29 @@ export default function Home() {
       </div>
     </div>
   )
+}
+
+export async function getServerSideProps({}) {
+  //fetch options
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjMjcxYTRhY2NkMGUwY2I0NzBmYWZkMjlhMmJjOTZjNiIsInN1YiI6IjY1NjYwODU3YTM0OTExMDExYjU5MTk2YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Bd7zqZOCEOyovLHdwMIyHB6BX_EgPzxw6JCCTiLNriQ",
+    },
+  }
+
+  //get the latest movies
+  const resp = await fetch(
+    "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1",
+    options,
+  )
+  const data = await resp.json()
+  const latestMovies = [...data.results]
+  return {
+    props: {
+      latestMovies,
+    },
+  }
 }
