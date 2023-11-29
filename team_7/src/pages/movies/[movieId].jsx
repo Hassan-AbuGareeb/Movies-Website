@@ -1,7 +1,13 @@
 import React from "react"
 import Link from "next/link"
 
-const MoviePage = ({ movieInfo, directors, mainActors, relatedMovies }) => {
+const MoviePage = ({
+  movieInfo,
+  directors,
+  mainActors,
+  relatedMovies,
+  trailerLink,
+}) => {
   const {
     title,
     release_date: releaseDate,
@@ -11,6 +17,7 @@ const MoviePage = ({ movieInfo, directors, mainActors, relatedMovies }) => {
     vote_count: votings,
     poster_path: poster,
     overview,
+    production_companies,
   } = movieInfo
 
   const actorsItems = mainActors.map((actor, index) => (
@@ -34,6 +41,9 @@ const MoviePage = ({ movieInfo, directors, mainActors, relatedMovies }) => {
       <p>{movie.title}</p>
     </div>
   ))
+
+  const { name: companyName, logo_path: companyLogoLink } =
+    production_companies[0]
 
   return (
     <div>
@@ -71,6 +81,15 @@ const MoviePage = ({ movieInfo, directors, mainActors, relatedMovies }) => {
         }}
       >
         {relatedMoviesItems}
+      </div>
+      <iframe src={trailerLink} width={"400px"} height={"250px"}></iframe>
+      <div>
+        produced by:
+        {companyName}
+        <img
+          width={"200px"}
+          src={`https://image.tmdb.org/t/p/original/${companyLogoLink}`}
+        />
       </div>
     </div>
   )
@@ -110,12 +129,20 @@ export async function getServerSideProps(context) {
   const similarMoviesData = await similarMoviesResponse.json()
   const relatedMovies = similarMoviesData.results.slice(0, 5)
 
+  const trailerResponse = await fetch(
+    `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`,
+    options,
+  )
+  const trailer = await trailerResponse.json()
+  const trailerLink = `https://www.youtube.com/embed/${trailer.results[0].key}`
+
   return {
     props: {
       movieInfo,
       directors,
       mainActors,
       relatedMovies,
+      trailerLink,
     },
   }
 }
