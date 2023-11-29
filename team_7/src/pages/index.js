@@ -32,8 +32,6 @@ export default function Home() {
   useEffect(() => {
     getLatestMovies()
   }, [])
-
-  console.log(latestMovies[0])
   let movies
   movies = latestMovies.map((movie, index) => {
     return (
@@ -54,7 +52,6 @@ export default function Home() {
           <Link href={`./movies/${movie.id}`}>
             <img
               width={"100px"}
-              height={"100px"}
               src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
             />
           </Link>
@@ -78,7 +75,7 @@ export default function Home() {
             flexWrap: "wrap",
           }}
         >
-          {true && movies}
+          {"loading..." && movies}
         </ul>
       </div>
     </div>
