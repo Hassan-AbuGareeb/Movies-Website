@@ -134,7 +134,9 @@ export async function getServerSideProps(context) {
     options,
   )
   const trailer = await trailerResponse.json()
-  const trailerLink = `https://www.youtube.com/embed/${trailer.results[0].key}`
+  const trailerLink = `https://www.youtube.com/embed/${
+    trailer.results.find((video) => video.type === "Trailer").key
+  }`
 
   return {
     props: {
