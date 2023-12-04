@@ -51,6 +51,7 @@ export default function Home({ latestMovies }) {
   )
 }
 
+
 export async function getServerSideProps() {
   //fetch options
   const options = {
