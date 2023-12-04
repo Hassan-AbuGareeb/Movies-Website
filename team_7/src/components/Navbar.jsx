@@ -3,6 +3,9 @@ import styles from "../styles/navbar.module.css"
 import Link from "next/link"
 
 const Navbar = ({ genres }) => {
+  function onSearchChange(event) {
+    setSearch(event.target.value)
+  }
   const [search, setSearch] = useState("")
   const movieFilters = ["popular", "top_rated", "upcoming", "now_playing"]
   return (
@@ -62,7 +65,7 @@ const Navbar = ({ genres }) => {
           placeholder="Search for movies or actors"
           className={styles.searchInput}
           value={search}
-          onChange={setSearch}
+          onChange={onSearchChange}
         />
         <Link
           href={{
