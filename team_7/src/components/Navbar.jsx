@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react"
 import styles from "./Navbar.module.css"
 import { getServerSideProps } from "next/dist/build/templates/pages"
@@ -101,3 +102,4 @@ export async function getServerSideProps() {
   const genres = [...genresData.genres]
   return { props: { genres } }
 }
+
