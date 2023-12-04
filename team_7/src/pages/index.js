@@ -1,20 +1,65 @@
-import Head from "next/head"
-import Image from "next/image"
-// import { Inter } from "next/font/google"
 import styles from "@/styles/Home.module.css"
 import Link from "next/link"
 
-// const inter = Inter({ subsets: ["latin"] })
-
-export default function Home() {
-  return <div>Hello
-    <Link
-          href={{
-            pathname: "/actors",
-            query: { page: 1 },
+export default function Home({ latestMovies }) {
+  const movies = latestMovies.map((movie, index) => {
+    return (
+      <div
+        key={index}
+        style={{
+          backgroundColor: "#999",
+          width: "150px",
+          margin: "10px auto",
+          padding: "2px",
+        }}
+      >
+        <li
+          style={{
+            margin: "10px",
           }}
         >
-          actors
-        </Link>
-  </div>
+          <Link href={`./movies/${movie.id}`}>
+            <img
+              width={"100px"}
+              src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+            />
+          </Link>
+          <br />
+          {movie.title}
+        </li>
+      </div>
+    )
+  })
+  return (
+    <div style={{ textAlign: "center" }}>
+      Latest Movies
+      <div style={{ margin: "30px auto" }}>
+        <ul
+          style={{
+            margin: "10px",
+            listStyle: "none",
+            padding: "0",
+            margin: "10px auto",
+            display: "flex",
+            flexWrap: "wrap",
+          }}
+        >
+          {"loading..." && movies}
+        </ul>
+      </div>
+    </div>
+  )
 }
+
+
+export async function getServerSideProps() {
+  //fetch options
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjMjcxYTRhY2NkMGUwY2I0NzBmYWZkMjlhMmJjOTZjNiIsInN1YiI6IjY1NjYwODU3YTM0OTExMDExYjU5MTk2YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Bd7zqZOCEOyovLHdwMIyHB6BX_EgPzxw6JCCTiLNriQ",
+    },
+  }
+
