@@ -69,16 +69,3 @@ export async function getServerSideProps() {
     },
   }
 
-  //get the latest movies
-  const resp = await fetch(
-    "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1",
-    options,
-  )
-  const data = await resp.json()
-  const latestMovies = [...data.results]
-  return {
-    props: {
-      latestMovies,
-    },
-  }
-}
