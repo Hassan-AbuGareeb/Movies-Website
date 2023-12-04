@@ -85,3 +85,22 @@ const Navbar = ({ genres }) => {
     )
   }
 }
+export default Navbar
+
+export async function getServerSideProps() {
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjMjcxYTRhY2NkMGUwY2I0NzBmYWZkMjlhMmJjOTZjNiIsInN1YiI6IjY1NjYwODU3YTM0OTExMDExYjU5MTk2YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Bd7zqZOCEOyovLHdwMIyHB6BX_EgPzxw6JCCTiLNriQ",
+    },
+  }
+  const genresResponse = await fetch(
+    "https://api.themoviedb.org/3/genre/movie/list?language=en",
+    options,
+  )
+  const genresData = await genresResponse.json()
+  const genres = [...genresData.genres]
+  return { props: { genres } }
+}
