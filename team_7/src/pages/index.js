@@ -32,7 +32,14 @@ export default function Home({ latestMovies }) {
   })
   return (
     <div style={{ textAlign: "center" }}>
-      Latest Movies
+      <Link
+        href={{
+          pathname: "./movies",
+          query: { page: 1, filter: "upcoming" },
+        }}
+      >
+        latest
+      </Link>
       <div style={{ margin: "30px auto" }}>
         <ul
           style={{
@@ -50,7 +57,6 @@ export default function Home({ latestMovies }) {
     </div>
   )
 }
-
 
 export async function getServerSideProps() {
   //fetch options

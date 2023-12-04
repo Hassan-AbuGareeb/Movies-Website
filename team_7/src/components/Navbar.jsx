@@ -30,8 +30,8 @@ const Navbar = ({ genres }) => {
 
       {/* Movies Dropdown */}
       <div className={styles.dropdown}>
-        <button className={styles.dropbtn}>Movies</button>
-        {/* <div className={styles.dropdownContent}>
+        {/* <button className={styles.dropbtn}>Movies</button> */}
+        <div className={styles.dropdownContent}>
           {movieFilters.map((movie, index) => (
             <Link
               key={index}
@@ -43,7 +43,7 @@ const Navbar = ({ genres }) => {
               {movie}
             </Link>
           ))}
-        </div> */}
+        </div>
       </div>
 
       <Link
