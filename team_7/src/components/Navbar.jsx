@@ -1,20 +1,15 @@
+import React, { useEffect, useState } from "react"
+import styles from "./Navbar.module.css"
+import { getServerSideProps } from "next/dist/build/templates/pages"
+import Link from "next/link"
 
-import React, { useEffect, useState } from 'react';
-import styles from './Navbar.module.css'; 
+function onSearchChange(event) {
+  setSearch(event.target.value)
+}
 
-const Navbar = () => {
-  // State for genres
-  const [genres, setGenres] = useState([]);
-
-  // Fetch genres from the Movie Database API
-  useEffect(() => {
-    const API_KEY = 'YOUR_API_KEY'; // Replace with your actual API key
-    fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`)
-      .then((response) => response.json())
-      .then((data) => setGenres(data.genres))
-      .catch((error) => console.error('Error fetching genres:', error));
-  }, []);
-
+const Navbar = ({ genres }) => {
+  const [search, setSearch] = useState("")
+  const movieFilters = ["popular", "top_rated", "upcoming", "now_playing"]
   return (
     <nav className={styles.navbar}>
       {/* Logo */}
@@ -25,20 +20,84 @@ const Navbar = () => {
         <button className={styles.dropbtn}>Genres</button>
         <div className={styles.dropdownContent}>
           {genres.map((genre) => (
-            <a key={genre.id} href="#">
+            <Link
+              href={{
+                pathname: "../pages/movies",
+                query: { page: 1, genre: [genre.name] },
+              }}
+            >
+              {" "}
               {genre.name}
-            </a>
+            </Link>
           ))}
         </div>
       </div>
 
+      {/* Movies Dropdown */}
+      <div className={styles.dropdown}>
+        <button className={styles.dropbtn}>Movies</button>
+        <div className={styles.dropdownContent}>
+          {movieFilters.map((movie, index) => (
+            <Link
+              key={index}
+              href={{
+                pathname: "../pages/movies",
+                query: { page: 1, filter: [movie] },
+              }}
+            >
+              {movie}
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      <Link
+        href={{
+          pathname: "/actors",
+          query: { page: 1 },
+        }}
+      >
+        <div>Actors</div>
+      </Link>
+
       {/* Search Box */}
       <div className={styles.searchBox}>
-        <input type="text" placeholder="Search for movies or actors" className={styles.searchInput} />
-        <button className={styles.searchButton}>Search</button>
+        <input
+          type="text"
+          placeholder="Search for movies or actors"
+          className={styles.searchInput}
+          value={search}
+          onChange={onSearchChange}
+        />
+        <Link
+          href={{
+            pathname: "/search",
+            query: { serchValue: [search] },
+          }}
+        >
+          <div className={styles.searchButton}>Search</div>
+        </Link>
       </div>
     </nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar
+
+export async function getServerSideProps() {
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjMjcxYTRhY2NkMGUwY2I0NzBmYWZkMjlhMmJjOTZjNiIsInN1YiI6IjY1NjYwODU3YTM0OTExMDExYjU5MTk2YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Bd7zqZOCEOyovLHdwMIyHB6BX_EgPzxw6JCCTiLNriQ",
+    },
+  }
+  const genresResponse = await fetch(
+    "https://api.themoviedb.org/3/genre/movie/list?language=en",
+    options,
+  )
+  const genresData = await genresResponse.json()
+  const genres = [...genresData.genres]
+  return { props: { genres } }
+}
