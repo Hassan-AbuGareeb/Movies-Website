@@ -32,6 +32,7 @@ function ActorPage({actorData}) {
 
     
         {actorInfo}
+
         </div>
     )
 }

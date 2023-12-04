@@ -1,7 +1,8 @@
 
 import Link from "next/link"
-// import ActorsPagination from "@/util/ActorsPagination"
+import ActorsPagination from "@/util/ActorsPagination"
 function ActorsPage(props) {
+    console.log(props.actorsData)
    const actorsItem = props.actorsData.map ((actor,index)=>{
  
 
@@ -30,6 +31,7 @@ return (<div
         </li>
       </div>)
    })
+
     return (
         <div>
             <ul style = {{margin: "10px",
@@ -40,7 +42,8 @@ return (<div
             flexWrap: "wrap",}}> 
            {actorsItem} 
            </ul>
-           {/* <ActorsPagination currentPage={props.currentPage}/> */}
+
+           <ActorsPagination currentPage={props.currentPage}/>
         
         </div>
     )
@@ -65,11 +68,4 @@ export async function getServerSideProps({query}) {
 
 
 }
-
-
-
-
-
-
-
 
