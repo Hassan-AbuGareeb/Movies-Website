@@ -4,9 +4,10 @@ import Pagination from "@/util/Pagination"
 
 export default function Home({
   latestMovies,
-  filter,
+  filter = null,
   currentPage,
   numberOfPages,
+  // genre = null,
 }) {
   const movies = latestMovies.map((movie, index) => {
     return (
@@ -38,7 +39,7 @@ export default function Home({
   })
   return (
     <div style={{ textAlign: "center" }}>
-      {filter
+      {filter /*|| genre*/
         .split("_")
         .map((movie) => movie.at(0).toUpperCase() + movie.slice(1))
         .join(" ")}
@@ -58,6 +59,7 @@ export default function Home({
         <Pagination
           currentPage={currentPage}
           filter={filter}
+          // genre={genre}
           numberOfPages={numberOfPages}
         />
       </div>
@@ -66,9 +68,10 @@ export default function Home({
 }
 
 export async function getServerSideProps({ query }) {
+  console.log(query)
   const filter = query.filter
   const currentPage = query.page
-  //fetch options
+  const genre = null
   const options = {
     method: "GET",
     headers: {
@@ -78,14 +81,15 @@ export async function getServerSideProps({ query }) {
     },
   }
 
-  //get the latest movies
-  const latestMoviesResp = await fetch(
-    `https://api.themoviedb.org/3/movie/${filter}?language=en-US&page=${currentPage}`,
+  const filteredMovies = await fetch(
+    !!filter
+      ? `https://api.themoviedb.org/3/movie/${filter}?language=en-US&page=${currentPage}`
+      : `https://api.themoviedb.org/3/discover/movie?include_adult=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${genre}`,
     options,
   )
-  const latestMoviesData = await latestMoviesResp.json()
-  const numberOfPages = latestMoviesData.total_pages
-  const latestMovies = [...latestMoviesData.results]
+  const filteredMoviesData = await filteredMovies.json()
+  const numberOfPages = filteredMoviesData.total_pages
+  const latestMovies = [...filteredMoviesData.results]
 
   return {
     props: {
@@ -93,6 +97,7 @@ export async function getServerSideProps({ query }) {
       filter,
       currentPage,
       numberOfPages,
+      // genre,
     },
   }
 }

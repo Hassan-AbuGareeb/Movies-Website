@@ -22,17 +22,19 @@ const MoviePage = ({
 
   const actorsItems = mainActors.map((actor, index) => (
     <div key={index}>
-      <img
-        width={"100px"}
-        src={`https://image.tmdb.org/t/p/original/${actor.profile_path}`}
-      />
+      <Link href={`../actors/${actor.id}`} key={index}>
+        <img
+          width={"100px"}
+          src={`https://image.tmdb.org/t/p/original/${actor.profile_path}`}
+        />
+      </Link>
       <p>{actor.name}</p>
     </div>
   ))
 
   const relatedMoviesItems = relatedMovies.map((movie, index) => (
     <div key={index}>
-      <Link href={`/movies/${movie.id}`}>
+      <Link href={`../movies/${movie.id}`} key={index}>
         <img
           width={"100px"}
           src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
@@ -42,8 +44,8 @@ const MoviePage = ({
     </div>
   ))
 
-  const { name: companyName, logo_path: companyLogoLink } =
-    production_companies[0]
+  const productionCompany =
+    production_companies.length !== 0 ? production_companies[0] : null
 
   return (
     <div>
@@ -82,15 +84,19 @@ const MoviePage = ({
       >
         {relatedMoviesItems}
       </div>
-      <iframe src={trailerLink} width={"400px"} height={"250px"}></iframe>
-      <div>
-        produced by:
-        {companyName}
-        <img
-          width={"200px"}
-          src={`https://image.tmdb.org/t/p/original/${companyLogoLink}`}
-        />
-      </div>
+      {trailerLink && (
+        <iframe src={trailerLink} width={"400px"} height={"250px"}></iframe>
+      )}
+      {productionCompany && (
+        <div>
+          produced by:
+          {productionCompany.name}
+          <img
+            width={"200px"}
+            src={`https://image.tmdb.org/t/p/original/${productionCompany.logo_path}`}
+          />
+        </div>
+      )}
     </div>
   )
 }
@@ -134,9 +140,12 @@ export async function getServerSideProps(context) {
     options,
   )
   const trailer = await trailerResponse.json()
-  const trailerLink = `https://www.youtube.com/embed/${
-    trailer.results.find((video) => video.type === "Trailer").key
-  }`
+  const trailerLink =
+    trailer.results.length !== 0
+      ? `https://www.youtube.com/embed/${
+          trailer.results.find((video) => video.type === "Trailer").key
+        }`
+      : false
 
   return {
     props: {

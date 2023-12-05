@@ -1,7 +1,8 @@
 import React from "react"
+import Link from "next/link"
 
-const SearchResults = ([movies, actors]) => {
-  const movieCards = movies.map((movie, index) => {
+const SearchResults = ({ movieResults, actorResults }) => {
+  const movieCards = movieResults.map((movie, index) => {
     return (
       <div
         key={index}
@@ -30,7 +31,7 @@ const SearchResults = ([movies, actors]) => {
     )
   })
 
-  const actorCards = actors.map((actor, index) => {
+  const actorCards = actorResults.map((actor, index) => {
     return (
       <div
         key={index}
@@ -62,6 +63,8 @@ const SearchResults = ([movies, actors]) => {
   return (
     <div style={{ textAlign: "center" }}>
       search results
+      <br />
+      <p>movies</p>
       <div style={{ margin: "30px auto" }}>
         <ul
           style={{
@@ -78,6 +81,7 @@ const SearchResults = ([movies, actors]) => {
       </div>
       <br />
       <hr />
+      <p>actors</p>
       <br />
       <div style={{ margin: "30px auto" }}>
         <ul
@@ -122,13 +126,13 @@ export async function getServerSideProps({ query }) {
     `https://api.themoviedb.org/3/search/person?query=${serchValue}&include_adult=false&language=en-US&page=1`,
     options,
   )
-  const actorResultsData = await movieResultsResponse.json()
+  const actorResultsData = await actorResultsResponse.json()
   const actorResults = [...actorResultsData.results]
 
   return {
     props: {
-      movieResults: movies,
-      actorResults: actors,
+      movieResults,
+      actorResults,
     },
   }
 }

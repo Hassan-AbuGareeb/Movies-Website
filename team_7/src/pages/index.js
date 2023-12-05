@@ -32,7 +32,14 @@ export default function Home({ latestMovies }) {
   })
   return (
     <div style={{ textAlign: "center" }}>
-      Latest Movies
+      <Link
+        href={{
+          pathname: "./movies",
+          query: { page: 1, filter: "upcoming" },
+        }}
+      >
+        Latest Movies
+      </Link>
       <div style={{ margin: "30px auto" }}>
         <ul
           style={{
@@ -69,6 +76,13 @@ export async function getServerSideProps({}) {
   )
   const data = await resp.json()
   const latestMovies = [...data.results]
+
+  const genresp = await fetch(
+    "https://api.themoviedb.org/3/genre/movie/list?language=en",
+    options,
+  )
+  const gen = await genresp.json()
+
   return {
     props: {
       latestMovies,

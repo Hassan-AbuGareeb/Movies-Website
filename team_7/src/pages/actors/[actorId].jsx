@@ -18,8 +18,6 @@ function ActorPage({ actorData }) {
 
 export default ActorPage
 export async function getServerSideProps({ query }) {
-  //https://api.themoviedb.org/3/person/{person_id}
-
   const actorId = query.actorId
   const options = {
     method: "GET",
