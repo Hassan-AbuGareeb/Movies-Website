@@ -1,40 +1,54 @@
-import styles from "@/styles/Home.module.css"
 import Link from "next/link"
 
 export default function Home({ latestMovies }) {
   const movies = latestMovies.map((movie, index) => {
     return (
       <div
-        key={index}
-        style={{
-          backgroundColor: "#999",
-          width: "150px",
-          margin: "10px auto",
-          padding: "2px",
-        }}
+        class=" 
+        mt-6 mr-6 mb-6 ml-3
+        bg-wihte-200
+        rounded-lg 
+        w-55 
+        pt-6 pr-4 pb-2 pl-2
+        px-8 py-8"
       >
         <Link href={`./movies/${movie.id}`}>
           <img
-            width={"100px"}
+            class="rounded-lg 
+            hover:bg-sky-700
+            w-130
+            h-80"
+            // width={"100px"}
             src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
           />
         </Link>
-        <br />
-        <p> {movie.title}</p>
+        {
+          <p
+            class="  text-base 
+            font-bold
+            line-clamp-3 hover:line-clamp-4"
+          >
+            {" "}
+            {movie.title}{" "}
+          </p>
+        }
       </div>
     )
   })
   return (
-    <div style={{ textAlign: "center" }}>
-      <Link
+    <div className="bg-slate-200 text-center">
+      {/* <Link
         href={{
           pathname: "./movies",
           query: { page: 1, filter: "upcoming" },
         }}
       >
-        <p class="text-7xl font-bold underline">Latest Movies</p>
-      </Link>
-      <div class="bg-red-500">{"loading..." && movies}</div>
+        <p class="text-3xl font-bold no-line">Latest Movies</p>
+      </Link> */}
+      <h1 className="text-3xl pt-5">Latest Movies</h1>
+      <div class=" flex flex-none flex-wrap flex-intial justify-center py-10 ">
+        {"loading..." && movies}
+      </div>
     </div>
   )
 }

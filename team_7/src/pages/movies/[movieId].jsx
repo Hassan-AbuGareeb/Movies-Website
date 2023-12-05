@@ -49,22 +49,26 @@ const MoviePage = ({
 
   return (
     <div>
-      {!!poster && (
-        <img
-          width={"300px"}
-          src={`https://image.tmdb.org/t/p/original/${poster}`}
-        />
-      )}
-      <p>{title}</p>
-      <p>released on: {releaseDate}</p>
-      <p>duration: {runtime}</p>
-      <p>language: {language}</p>
-      <p>rating: {rating}</p>
-      <p>votings: {votings}</p>
-      <p>
-        Directed by: {directors.map((director) => director.name).join(", ")}
-      </p>
-      <p>overview: {overview}</p>
+      <div className="bg-green-500 flex">
+        {!!poster && (
+          <img
+            src={`https://image.tmdb.org/t/p/original/${poster}`}
+            className="w-96 h-1/4 rounded-xl"
+          />
+        )}
+        <div className="flex flex-col justify-end">
+          <p>{title}</p>
+          <p>released on: {releaseDate}</p>
+          <p>duration: {runtime}</p>
+          <p>language: {language}</p>
+          <p>rating: {rating}</p>
+          <p>votings: {votings}</p>
+          <p>
+            Directed by: {directors.map((director) => director.name).join(", ")}
+          </p>
+          <p>overview: {overview}</p>
+        </div>
+      </div>
       <div
         style={{
           display: "flex",
