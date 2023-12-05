@@ -35,24 +35,24 @@ const Navbar = () => {
 
       {/* Genres Dropdown */}
       <div className={styles.dropdown}>
-        {/* <button className={styles.dropbtn}>Genres</button> */}
-        {/* <div className={styles.dropdownContent}> */}
-        {genres.map((genre) => (
-          <Link
-            href={{
-              pathname: "./movies",
-              query: { page: 1, genre: genre.name, id: genre.id },
-            }}
-          >
-            {genre.name}
-          </Link>
-        ))}
+        <button className={styles.dropbtn}>Genres</button>
+        <div className={styles.dropdownContent}>
+          {genres.map((genre) => (
+            <Link
+              href={{
+                pathname: "./movies",
+                query: { page: 1, genre: genre.name, id: genre.id },
+              }}
+            >
+              {genre.name}
+            </Link>
+          ))}
+        </div>
       </div>
-      {/* </div> */}
 
       {/* Movies Dropdown */}
       <div className={styles.dropdown}>
-        {/* <button className={styles.dropbtn}>Movies</button> */}
+        <button className={styles.dropbtn}>Movies</button>
         <div className={styles.dropdownContent}>
           {movieFilters.map((movie, index) => (
             <Link

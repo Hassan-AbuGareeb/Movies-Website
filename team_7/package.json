@@ -8,10 +8,13 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --check --ignore-path .gitignore .",
-    "format:fix": "prettier --write --ignore-path .gitignore ."
+    "format:fix": "prettier --write --ignore-path .gitignore .",
+    "build:styles": "tailwindcss build styles/globals.css -o public/styles.css"
   },
   "dependencies": {
+    "autoprefixer": "^10.4.16",
     "next": "14.0.3",
+    "postcss": "^8.4.32",
     "react": "^18",
     "react-dom": "^18"
   },

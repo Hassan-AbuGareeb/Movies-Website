@@ -13,20 +13,14 @@ export default function Home({ latestMovies }) {
           padding: "2px",
         }}
       >
-        <li
-          style={{
-            margin: "10px",
-          }}
-        >
-          <Link href={`./movies/${movie.id}`}>
-            <img
-              width={"100px"}
-              src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
-            />
-          </Link>
-          <br />
-          {movie.title}
-        </li>
+        <Link href={`./movies/${movie.id}`}>
+          <img
+            width={"100px"}
+            src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+          />
+        </Link>
+        <br />
+        <p> {movie.title}</p>
       </div>
     )
   })
@@ -38,22 +32,9 @@ export default function Home({ latestMovies }) {
           query: { page: 1, filter: "upcoming" },
         }}
       >
-        <h1 className="text-3xl font-bold underline">Latest Movies</h1>
+        <p class="text-7xl font-bold underline">Latest Movies</p>
       </Link>
-      <div style={{ margin: "30px auto" }}>
-        <ul
-          style={{
-            margin: "10px",
-            listStyle: "none",
-            padding: "0",
-            margin: "10px auto",
-            display: "flex",
-            flexWrap: "wrap",
-          }}
-        >
-          {"loading..." && movies}
-        </ul>
-      </div>
+      <div class="bg-red-500">{"loading..." && movies}</div>
     </div>
   )
 }
