@@ -7,7 +7,7 @@ export default function Home({
   filter = null,
   currentPage,
   numberOfPages,
-  // genre = null,
+  genre = null,
 }) {
   const movies = latestMovies.map((movie, index) => {
     return (
@@ -39,10 +39,11 @@ export default function Home({
   })
   return (
     <div style={{ textAlign: "center" }}>
-      {filter /*|| genre*/
-        .split("_")
-        .map((movie) => movie.at(0).toUpperCase() + movie.slice(1))
-        .join(" ")}
+      {filter ||
+        genre
+          .split("_")
+          .map((movie) => movie.at(0).toUpperCase() + movie.slice(1))
+          .join(" ")}
       <div style={{ margin: "30px auto" }}>
         <ul
           style={{
@@ -68,11 +69,10 @@ export default function Home({
   )
 }
 
-export async function getServerSideProps({ query }) {
-  // console.log(query)
-  const filter = query.filter
-  const currentPage = query.page
-  const genre = null
+export async function getServerSideProps({
+  query: { filter = null, genre = null, page, id = null },
+}) {
+  const currentPage = page
   const options = {
     method: "GET",
     headers: {
@@ -85,7 +85,7 @@ export async function getServerSideProps({ query }) {
   const filteredMovies = await fetch(
     !!filter
       ? `https://api.themoviedb.org/3/movie/${filter}?language=en-US&page=${currentPage}`
-      : `https://api.themoviedb.org/3/discover/movie?include_adult=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${genre}`,
+      : `https://api.themoviedb.org/3/discover/movie?include_adult=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${id}`,
     options,
   )
   const filteredMoviesData = await filteredMovies.json()
@@ -98,7 +98,7 @@ export async function getServerSideProps({ query }) {
       filter,
       currentPage,
       numberOfPages,
-      // genre,
+      genre,
     },
   }
 }

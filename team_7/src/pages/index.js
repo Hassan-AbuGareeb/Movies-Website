@@ -81,8 +81,6 @@ export async function getServerSideProps({}) {
     "https://api.themoviedb.org/3/genre/movie/list?language=en",
     options,
   )
-  const gen = await genresp.json()
-
   return {
     props: {
       latestMovies,

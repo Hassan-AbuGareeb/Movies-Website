@@ -40,8 +40,8 @@ const Navbar = () => {
         {genres.map((genre) => (
           <Link
             href={{
-              pathname: "../pages/movies",
-              query: { page: 1, genre: genre.name, filter: null },
+              pathname: "./movies",
+              query: { page: 1, genre: genre.name, id: genre.id },
             }}
           >
             {genre.name}
@@ -58,8 +58,8 @@ const Navbar = () => {
             <Link
               key={index}
               href={{
-                pathname: "../pages/movies",
-                query: { page: 1, filter: movie, genre: null },
+                pathname: "./movies",
+                query: { page: 1, filter: movie },
               }}
             >
               {movie}
