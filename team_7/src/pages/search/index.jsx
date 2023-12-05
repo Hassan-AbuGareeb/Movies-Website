@@ -1,7 +1,13 @@
 import React from "react"
 import Link from "next/link"
-
-const SearchResults = ({ movieResults, actorResults }) => {
+import Pagination from "@/util/Pagination"
+const SearchResults = ({
+  movieResults,
+  actorResults,
+  currentPage,
+  numberOfPages,
+  searchValue,
+}) => {
   const movieCards = movieResults.map((movie, index) => {
     return (
       <div
@@ -50,7 +56,7 @@ const SearchResults = ({ movieResults, actorResults }) => {
           <Link href={`../actors/${actor.id}`}>
             <img
               width={"100px"}
-              src={`https://image.tmdb.org/t/p/original/${actor.poster_path}`}
+              src={`https://image.tmdb.org/t/p/original/${actor.profile_path}`}
             />
           </Link>
           <br />
@@ -97,6 +103,12 @@ const SearchResults = ({ movieResults, actorResults }) => {
           {"loading..." && actorCards}
         </ul>
       </div>
+      <Pagination
+        currentPage={currentPage}
+        numberOfPages={numberOfPages}
+        destinationPage="search"
+        searchValue={searchValue}
+      />
     </div>
   )
 }
@@ -104,8 +116,8 @@ const SearchResults = ({ movieResults, actorResults }) => {
 export default SearchResults
 
 export async function getServerSideProps({ query }) {
-  const serchValue = query.serchValue
-
+  const searchValue = query.searchValue
+  const currentPage = query.page
   const options = {
     method: "GET",
     headers: {
@@ -116,23 +128,31 @@ export async function getServerSideProps({ query }) {
   }
   //get the movies search results
   const movieResultsResponse = await fetch(
-    `https://api.themoviedb.org/3/search/movie?query=${serchValue}&include_adult=false&language=en-US&page=1`,
+    `https://api.themoviedb.org/3/search/movie?query=${searchValue}&include_adult=false&language=en-US&page=${currentPage}`,
     options,
   )
   const movieResultsData = await movieResultsResponse.json()
   const movieResults = [...movieResultsData.results]
   //get the actors search results
   const actorResultsResponse = await fetch(
-    `https://api.themoviedb.org/3/search/person?query=${serchValue}&include_adult=false&language=en-US&page=1`,
+    `https://api.themoviedb.org/3/search/person?query=${searchValue}&include_adult=false&language=en-US&page=${currentPage}`,
     options,
   )
   const actorResultsData = await actorResultsResponse.json()
   const actorResults = [...actorResultsData.results]
 
+  const numberOfPages = Math.min(
+    movieResultsData.total_pages,
+    actorResultsData.total_pages,
+  )
+
   return {
     props: {
       movieResults,
       actorResults,
+      currentPage,
+      numberOfPages,
+      searchValue,
     },
   }
 }

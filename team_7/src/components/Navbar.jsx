@@ -41,7 +41,7 @@ const Navbar = () => {
           <Link
             href={{
               pathname: "../pages/movies",
-              query: { page: 1, genre: [genre.name], filter: null },
+              query: { page: 1, genre: genre.name, filter: null },
             }}
           >
             {genre.name}
@@ -59,7 +59,7 @@ const Navbar = () => {
               key={index}
               href={{
                 pathname: "../pages/movies",
-                query: { page: 1, filter: [movie], genre: null },
+                query: { page: 1, filter: movie, genre: null },
               }}
             >
               {movie}
@@ -89,7 +89,7 @@ const Navbar = () => {
         <Link
           href={{
             pathname: "/search",
-            query: { serchValue: [search] },
+            query: { page: 1, searchValue: search },
           }}
         >
           <div className={styles.searchButton}>Search</div>

@@ -59,6 +59,7 @@ export default function Home({
         <Pagination
           currentPage={currentPage}
           filter={filter}
+          destinationPage={"movies"}
           // genre={genre}
           numberOfPages={numberOfPages}
         />
@@ -68,7 +69,7 @@ export default function Home({
 }
 
 export async function getServerSideProps({ query }) {
-  console.log(query)
+  // console.log(query)
   const filter = query.filter
   const currentPage = query.page
   const genre = null

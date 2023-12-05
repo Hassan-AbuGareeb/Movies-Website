@@ -1,7 +1,13 @@
 import React from "react"
 import Link from "next/link"
 
-const Pagination = ({ filter, currentPage, numberOfPages }) => {
+const Pagination = ({
+  filter = null,
+  searchValue = null,
+  currentPage,
+  numberOfPages,
+  destinationPage,
+}) => {
   //calculate the minimum and maximum pages to show in the pagination
   const minPage = +currentPage - 2 < 1 ? 1 : +currentPage - 2
   const maxPage =
@@ -15,8 +21,12 @@ const Pagination = ({ filter, currentPage, numberOfPages }) => {
       <div key={number} style={{ width: "20px" }}>
         <Link
           href={{
-            pathname: "/movies",
-            query: { page: [number], filter: [filter] },
+            pathname: `/${destinationPage}`,
+            query: {
+              page: number,
+              filter: filter,
+              searchValue: searchValue,
+            },
           }}
         >
           {number}
