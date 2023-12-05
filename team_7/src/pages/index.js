@@ -38,7 +38,7 @@ export default function Home({ latestMovies }) {
           query: { page: 1, filter: "upcoming" },
         }}
       >
-        Latest Movies
+        <h1 className="text-3xl font-bold underline">Latest Movies</h1>
       </Link>
       <div style={{ margin: "30px auto" }}>
         <ul
