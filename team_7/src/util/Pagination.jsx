@@ -4,6 +4,8 @@ import Link from "next/link"
 const Pagination = ({
   filter = null,
   searchValue = null,
+  genre = null,
+  id = null,
   currentPage,
   numberOfPages,
   destinationPage,
@@ -26,6 +28,8 @@ const Pagination = ({
               page: number,
               filter: filter,
               searchValue: searchValue,
+              id: id,
+              genre: genre,
             },
           }}
         >

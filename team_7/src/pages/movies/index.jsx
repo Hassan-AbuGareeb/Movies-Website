@@ -8,6 +8,7 @@ export default function Home({
   currentPage,
   numberOfPages,
   genre = null,
+  id = null,
 }) {
   const movies = latestMovies.map((movie, index) => {
     return (
@@ -61,7 +62,8 @@ export default function Home({
           currentPage={currentPage}
           filter={filter}
           destinationPage={"movies"}
-          // genre={genre}
+          genre={genre}
+          id={id}
           numberOfPages={numberOfPages}
         />
       </div>
@@ -85,7 +87,7 @@ export async function getServerSideProps({
   const filteredMovies = await fetch(
     !!filter
       ? `https://api.themoviedb.org/3/movie/${filter}?language=en-US&page=${currentPage}`
-      : `https://api.themoviedb.org/3/discover/movie?include_adult=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${id}`,
+      : `https://api.themoviedb.org/3/discover/movie?include_adult=false&language=en-US&page=${currentPage}&sort_by=popularity.desc&with_genres=${id}`,
     options,
   )
   const filteredMoviesData = await filteredMovies.json()
@@ -99,6 +101,7 @@ export async function getServerSideProps({
       currentPage,
       numberOfPages,
       genre,
+      id,
     },
   }
 }
