@@ -1,19 +1,28 @@
 function ActorPage({ actorData }) {
   const actorInfo = (
-    <div>
+    <div className="bg-slate-600 flex p-5 my-16 gap-6 text-slate-200">
       <img
-        width={"100px"}
+        className="w-[300px] h-[400] rounded-2xl"
         src={`https://image.tmdb.org/t/p/original/${actorData.profile_path}`}
       />
-      <p>{actorData.name}</p>
+      <div className="flex flex-col justify-evenly">
+        <p className="text-4xl ">{actorData.name}</p>
 
-      <p>{actorData.gender === 2 ? "male" : "female"}</p>
-      <p>{actorData.popularity}</p>
-      <p>{actorData.birthday}</p>
-      <p>{actorData.biography}</p>
+        <p className="text-2xl">{actorData.gender === 2 ? "male" : "female"}</p>
+        <p className="text-2xl">
+          Popularity: {Math.round(actorData.popularity * 10) / 10}
+        </p>
+        <p className="text-2xl">Birth Date: {actorData.birthday}</p>
+        <p className="text-1xl">
+          <span className="text-2xl font-semibold">Biography:</span>
+          <br />
+          <br />
+          {actorData.biography}
+        </p>
+      </div>
     </div>
   )
-  return <div>{actorInfo}</div>
+  return <div className="bg-slate-600">{actorInfo}</div>
 }
 
 export default ActorPage

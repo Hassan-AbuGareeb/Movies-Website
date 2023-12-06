@@ -64,7 +64,7 @@ const MoviePage = ({
         {!!poster && (
           <img
             src={`https://image.tmdb.org/t/p/original/${poster}`}
-            className="w-[300px] h-[400] rounded-2xl border-"
+            className="w-[300px] h-[400] rounded-2xl"
           />
         )}
         <div className="flex flex-col justify-evenly ">
