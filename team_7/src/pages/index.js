@@ -10,7 +10,7 @@ export default function Home({ latestMovies }) {
         rounded-lg 
         w-55 
         pt-6 pr-4 pb-2 pl-2
-        px-8 py-8"
+        px-8 py-8 transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110"
       >
         <Link href={`./movies/${movie.id}`}>
           <img
@@ -26,7 +26,8 @@ export default function Home({ latestMovies }) {
           <p
             class="  text-base 
             font-bold
-            line-clamp-3 hover:line-clamp-4"
+            line-clamp-3 hover:line-clamp-4
+            max-w-[150px] mx-auto"
           >
             {" "}
             {movie.title}{" "}

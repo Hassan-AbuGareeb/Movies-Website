@@ -9,7 +9,7 @@ function ActorPage({ actorData }) {
         <p className="text-4xl ">{actorData.name}</p>
 
         <p className="text-2xl">{actorData.gender === 2 ? "male" : "female"}</p>
-        <p className="text-2xl">
+        <p className="text-2xl ">
           Popularity: {Math.round(actorData.popularity * 10) / 10}
         </p>
         <p className="text-2xl">Birth Date: {actorData.birthday}</p>

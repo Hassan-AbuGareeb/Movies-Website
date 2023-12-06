@@ -46,7 +46,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                GitHub
+                icon here
               </a>
             </div>
           </div>

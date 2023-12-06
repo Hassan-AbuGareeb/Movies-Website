@@ -1,6 +1,7 @@
 import React from "react"
 import Link from "next/link"
-
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar"
+import "react-circular-progressbar/dist/styles.css"
 const MoviePage = ({
   movieInfo,
   directors,
@@ -77,7 +78,21 @@ const MoviePage = ({
             <span className="text-lg ">m</span>
           </p>
           <p className="text-2xl">language: {language}</p>
-          <p className="text-2xl">rating: {Math.round(rating * 10) / 10}</p>
+          <p className="text-2xl">
+            rating:{" "}
+            <b>
+              <CircularProgressbar
+                value={Math.round(rating * 10) / 10}
+                text={`${Math.round(rating * 10) / 10}`}
+                minValue={0}
+                maxValue={10}
+                background
+                backgroundPadding={5}
+                className="h-12 w-12 inline max-w-[80px]"
+                styles={buildStyles({ textSize: "40px" })}
+              />
+            </b>
+          </p>
           <p className="text-2xl">votings: {votings}</p>
           <p className="text-2xl">
             Directed by: {directors.map((director) => director.name).join(", ")}
