@@ -23,8 +23,16 @@ const MoviePage = ({
 
   const actorsItems = mainActors.map((actor, index) => (
     <div
-      key={index}
-      className="transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 text-center max-w-lg"
+      //   class=" md:max-xl:flex
+      // mt-6 mb-6 mx-4
+      // bg-wihte-200
+      // rounded-lg
+      // w-50
+      // pt-6 pr-4 pb-2 pl-2 px-8 py-12
+      // transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110"
+      // class="grid gap-8 sm:max-xl:bg:blue-50 sm:max-xl:p-9 md:grid-cols-2 md:items-center md:text-left"
+      // key={index}
+      class="transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 text-center max-w-lg"
     >
       <Link href={`../actors/${actor.id}`} key={index}>
         <img

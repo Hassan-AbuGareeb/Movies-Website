@@ -1,16 +1,17 @@
 import Link from "next/link"
-
 export default function Home({ latestMovies }) {
   const movies = latestMovies.map((movie, index) => {
     return (
       <div
-        class=" 
-        mt-6 mr-6 mb-6 ml-3
+        // key={index}
+        class=" md:max-xl:flex
+
+        mt-6 mb-6 mx-3
         bg-wihte-200
         rounded-lg 
-        w-55 
-        pt-6 pr-4 pb-2 pl-2
-        px-8 py-8 transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110"
+        w-50 
+        pt-6 pr-4 pb-2 pl-2 px-8 py-12
+        transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110"
       >
         <Link href={`./movies/${movie.id}`}>
           <img
@@ -47,7 +48,7 @@ export default function Home({ latestMovies }) {
         <p class="text-3xl font-bold no-line">Latest Movies</p>
       </Link> */}
       <h1 className="text-3xl pt-5">Latest Movies</h1>
-      <div class=" flex flex-none flex-wrap flex-intial justify-center py-10 ">
+      <div class="flex flex-none flex-wrap flex-intial justify-center py-10">
         {"loading..." && movies}
       </div>
     </div>

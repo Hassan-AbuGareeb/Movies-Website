@@ -5,13 +5,13 @@ function ActorsPage(props) {
   const actorsItem = props.actorsData.map((actor, index) => {
     return (
       <div
-        class=" 
-  mt-6 mr-6 mb-6 ml-3
-  bg-wihte-200
-  rounded-lg 
-  w-55 
-  pt-6 pr-4 pb-2 pl-2
-  px-8 py-8"
+        class=" md:max-xl:flex
+      mt-6 mb-6 mx-3
+      bg-wihte-200
+      rounded-lg 
+      w-50 
+      pt-6 pr-4 pb-2 pl-2 px-8 py-12
+      transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110"
       >
         <Link href={`./actors/${actor.id}`}>
           <img
@@ -25,11 +25,10 @@ function ActorsPage(props) {
         </Link>
         {
           <p
-            class="   mt-6 mr-6 mb-6 ml-3       
-      text-ellipsis overflow-hidden
-       text-base 
-      font-bold
-      line-clamp-3 hover:line-clamp-4"
+            class="  text-base 
+          font-bold
+          line-clamp-3 hover:line-clamp-4
+          max-w-[150px] mx-auto"
           >
             {" "}
             {actor.name}{" "}

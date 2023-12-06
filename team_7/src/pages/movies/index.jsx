@@ -13,60 +13,60 @@ export default function Home({
   const movies = latestMovies.map((movie, index) => {
     return (
       <div
+        class=" md:max-xl:flex
+      mt-6 mb-6 mx-3
+      bg-wihte-200
+      rounded-lg 
+      w-50 
+      pt-6 pr-4 pb-2 pl-2 px-8 py-12
+      transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110"
         key={index}
-        style={{
-          backgroundColor: "#999",
-          width: "150px",
-          margin: "10px auto",
-          padding: "2px",
-        }}
       >
-        <li
-          style={{
-            margin: "10px",
-          }}
+        <Link
+          href={`./movies/${movie.id}`}
+          class="rounded-lg 
+            hover:bg-sky-700
+            w-130
+            h-80"
         >
-          <Link href={`./movies/${movie.id}`}>
-            <img
-              width={"100px"}
-              src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
-            />
-          </Link>
-          <br />
+          <img
+            class="rounded-lg 
+            hover:bg-sky-700
+            w-130
+            h-80"
+            src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+          />
+        </Link>
+        <br />
+        <p
+          class="  text-base 
+            font-bold
+            line-clamp-3 hover:line-clamp-4
+            max-w-[150px] mx-auto"
+        >
           {movie.title}
-        </li>
+        </p>
       </div>
     )
   })
   return (
-    <div style={{ textAlign: "center" }}>
+    <div className="text-center">
       {filter ||
         genre
           .split("_")
           .map((movie) => movie.at(0).toUpperCase() + movie.slice(1))
           .join(" ")}
-      <div style={{ margin: "30px auto" }}>
-        <ul
-          style={{
-            margin: "10px",
-            listStyle: "none",
-            padding: "0",
-            margin: "10px auto",
-            display: "flex",
-            flexWrap: "wrap",
-          }}
-        >
-          {"loading..." && movies}
-        </ul>
-        <Pagination
-          currentPage={currentPage}
-          filter={filter}
-          destinationPage={"movies"}
-          genre={genre}
-          id={id}
-          numberOfPages={numberOfPages}
-        />
+      <div class="flex flex-none flex-wrap flex-intial justify-center py-10">
+        {"loading..." && movies}
       </div>
+      <Pagination
+        currentPage={currentPage}
+        filter={filter}
+        destinationPage={"movies"}
+        genre={genre}
+        id={id}
+        numberOfPages={numberOfPages}
+      />
     </div>
   )
 }
