@@ -11,12 +11,12 @@ const SearchResults = ({
   const movieCards = movieResults.map((movie, index) => {
     return (
       <div
-        key={index}
-        class=" md:max-xl:flex
-        min-w-[213px]
+      class="
+      md:max-xl:flex
+      min-w-[230px]
       mt-6 mb-6 mx-3
       rounded-lg 
-      w-[213px]
+      w-[230px]
       pt-6 pr-4 pb-2 pl-2 px-8 py-12
       transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110"
       >
@@ -26,6 +26,7 @@ const SearchResults = ({
             w-130
             h-80"
             src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+  
           />
         </Link>
         <br />
@@ -33,8 +34,7 @@ const SearchResults = ({
           class=" 
           text-lg 
           font-semibold
-          line-clamp-3 hover:line-clamp-4
-          max-w-[150px] mx-auto"
+          max-w-[180px] mx-auto"
         >
           {movie.title}
         </p>
@@ -46,13 +46,14 @@ const SearchResults = ({
     return (
       <div
         key={index}
-        class=" md:max-xl:flex
-        min-w-[213px]
-      mt-6 mb-6 mx-3
-      rounded-lg 
-      w-[213px]
-      pt-6 pr-4 pb-2 pl-2 px-8 py-12
-      transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110"
+        class="
+        md:max-xl:flex
+        min-w-[230px]
+        mt-6 mb-6 mx-3
+        rounded-lg 
+        w-[230px]
+        pt-6 pr-4 pb-2 pl-2 px-8 py-12
+        transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110"
       >
         <Link href={`../actors/${actor.id}`}>
           <img
@@ -60,6 +61,7 @@ const SearchResults = ({
             w-130
             h-80"
             src={`https://image.tmdb.org/t/p/original/${actor.profile_path}`}
+           
           />
         </Link>
         <br />
@@ -67,7 +69,6 @@ const SearchResults = ({
            class=" 
            text-lg 
            font-semibold
-           line-clamp-3 hover:line-clamp-4
            max-w-[150px] mx-auto"
         >
           {actor.name}
@@ -89,12 +90,14 @@ const SearchResults = ({
       pt-6  pb-2 px-8 py-12"
     >
       <span>Search results:</span>
+      {/* movies results */}
       <p className="pt-6">Movies</p>
       <div class="flex flex-none flex-wrap flex-intial justify-center py-10">
         {"loading..." && movieCards}
       </div>
       <br />
       <hr />
+      {/* actors results */}
       <p className="pt-6">Actors</p>
       <div class="flex flex-none flex-wrap flex-intial justify-center py-10">
         {"loading..." && actorCards}
@@ -130,6 +133,7 @@ export async function getServerSideProps({ query }) {
   )
   const movieResultsData = await movieResultsResponse.json()
   const movieResults = [...movieResultsData.results]
+  
   //get the actors search results
   const actorResultsResponse = await fetch(
     `https://api.themoviedb.org/3/search/person?query=${searchValue}&include_adult=false&language=en-US&page=${currentPage}`,

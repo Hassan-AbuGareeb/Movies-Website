@@ -1,25 +1,25 @@
-function ActorPage({ actorData }) {
+function ActorPage({ actor }) {
 
   // JSX structure for actor information
   const actorInfo = (
     <div className="bg-gradient-to-r from-slate-900 via-slate-700 to-slate-900 flex p-5 gap-6 text-slate-200">
       <img
         className="w-[300px] h-[400] rounded-2xl"
-        src={`https://image.tmdb.org/t/p/original/${actorData.profile_path}`}
+        src={`https://image.tmdb.org/t/p/original/${actor.profile_path}`}
       />
       <div className="flex flex-col justify-evenly">
-        <p className="text-4xl ">{actorData.name}</p>
+        <p className="text-4xl ">{actor.name}</p>
 
-        <p className="text-2xl">{actorData.gender === 2 ? "male" : "female"}</p>
+        <p className="text-2xl">{actor.gender === 2 ? "male" : "female"}</p>
         <p className="text-2xl ">
-          Popularity: {Math.round(actorData.popularity * 10) / 10}
+          Popularity: {Math.round(actor.popularity * 10) / 10}
         </p>
-        <p className="text-2xl">Birth Date: {actorData.birthday}</p>
+        <p className="text-2xl">Birth Date: {actor.birthday}</p>
         <p className="text-1xl">
           <span className="text-2xl font-semibold">Biography:</span>
           <br />
           <br />
-          {actorData.biography}
+          {actor.biography}
         </p>
       </div>
     </div>
@@ -43,8 +43,8 @@ export async function getServerSideProps({ query }) {
     `https://api.themoviedb.org/3/person/${actorId}`,
     options,
   )
-  const actor = await actorResponse.json()
-  const actorData = actor
+  const actorData = await actorResponse.json()
+  const actor = actorData
 
-  return { props: { actorData } }
+  return { props: { actor } }
 }

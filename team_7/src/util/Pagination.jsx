@@ -40,7 +40,7 @@ const Pagination = ({
   })
 
   return (
-    <div className="flex justify-around w-[450px] mx-auto py-4 bg-yellow-300 rounded-xl" >
+    <div className="flex justify-around w-[400px] mx-auto py-3 bg-yellow-300 rounded-xl" >
       {pages}
     </div>
   )

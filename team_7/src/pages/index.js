@@ -7,10 +7,10 @@ export default function Home({ latestMovies }) {
         key={index}
         class="
         md:max-xl:flex
+        min-w-[230px]
         mt-6 mb-6 mx-3
-        bg-wihte-200
         rounded-lg 
-        w-50 
+        w-[230px]
         pt-6 pr-4 pb-2 pl-2 px-8 py-12
         transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110"
       >
@@ -24,7 +24,6 @@ export default function Home({ latestMovies }) {
             src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
           />
         </Link>
-        
           <p
             class=" 
             text-lg 
@@ -39,11 +38,15 @@ export default function Home({ latestMovies }) {
     )
   })
   return (
-    <div className="text-center text-slate-100
-    bg-gradient-to-r from-slate-900 via-slate-700 to-slate-900">
-      <h1 className="text-5xl pt-8  tracking-wider font-semibold ">Latest Movies</h1>
+    <div className="
+         text-center text-slate-100
+         bg-gradient-to-r from-slate-900 via-slate-700 to-slate-900"
+         >
+      <h1 className="text-5xl tracking-wider font-semibold pt-8"
+      >
+        Latest Movies</h1>
       <div class="flex flex-none flex-wrap flex-intial justify-center py-6">
-        {"loading..." && moviesCards}
+      {moviesCards}
       </div>
     </div>
   )
@@ -61,17 +64,13 @@ export async function getServerSideProps({}) {
   }
 
   //get the latest movies
-  const resp = await fetch(
+  const latestMoviesResopnse= await fetch(
     "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1",
     options,
   )
-  const data = await resp.json()
-  const latestMovies = [...data.results]
+  const latestMoviesData = await latestMoviesResopnse.json()
+  const latestMovies = [...latestMoviesData.results]
 
-  const genresp = await fetch(
-    "https://api.themoviedb.org/3/genre/movie/list?language=en",
-    options,
-  )
   return {
     props: {
       latestMovies,

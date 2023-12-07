@@ -1,36 +1,33 @@
 import Link from "next/link"
 import ActorsPagination from "@/util/ActorsPagination"
 function ActorsPage(props) {
-  console.log(props.actorsData)
-  const actorsItem = props.actorsData.map((actor, index) => {
+  const actorsItem = props.actors.map((actor, index) => {
     return (
       <div
-        class="md:max-xl:flex
+      class="
+        md:max-xl:flex
+        min-w-[230px]
         mt-6 mb-6 mx-3
-        bg-wihte-200
         rounded-lg 
-        w-50 
+        w-[230px]
         pt-6 pr-4 pb-2 pl-2 px-8 py-12
         transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110"
+      key={index}
       >
         <Link href={`./actors/${actor.id}`}>
           <img
-            class="
-            rounded-lg 
+            class="rounded-lg 
             w-130
-            h-80
-            hover:file:bg-violet-100"
+            h-80"
             src={`https://image.tmdb.org/t/p/original/${actor.profile_path}`}
           />
         </Link>
         {
           <p
-          class="
-          text-center
-          text-base 
-          font-bold
-          line-clamp-3 hover:line-clamp-4
-          max-w-[150px] mx-auto"
+          class=" 
+          text-lg 
+          font-semibold
+          max-w-[180px] mx-auto"
           >
             {actor.name}
           </p>
@@ -39,12 +36,13 @@ function ActorsPage(props) {
     )
   })
   return (
+    // page container
     <div className="text-center text-slate-100
     bg-gradient-to-r from-slate-900 via-slate-700 to-slate-900">
       <h1 className="text-5xl pt-8  tracking-wider font-semibold ">Popular Actors</h1>
+      {/* actors cards container */}
       <div class="
-     mb-6 lg:mb-0 flex flex-none flex-wrap flex-intial justify-center py-10">
-       
+            mb-6 lg:mb-0 flex flex-none flex-wrap flex-intial justify-center py-10">
         {actorsItem}
       </div>
       <ActorsPagination currentPage={props.currentPage} />
@@ -69,7 +67,7 @@ export async function getServerSideProps({ query }) {
     `https://api.themoviedb.org/3/person/popular?language=en-US&page=${currentPage}`,
     options,
   )
-  const actors = await actorsResponse.json()
-  const actorsData = [...actors.results]
-  return { props: { actorsData, currentPage } }
+  const actorsData = await actorsResponse.json()
+  const actors = [...actorsData.results]
+  return { props: { actors, currentPage } }
 }

@@ -118,7 +118,7 @@ const Navbar = () => {
               query: { page: 1 },
             }}
           >
-            <div class ="font-mono text-xl font-semibold">Actors</div>
+            <div class ="text-xl font-semibold">Actors</div>
           </Link>
         </div>
 

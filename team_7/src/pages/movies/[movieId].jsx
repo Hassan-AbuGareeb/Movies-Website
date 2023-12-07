@@ -1,7 +1,7 @@
 import React from "react"
 import Link from "next/link"
-// import { CircularProgressbar, buildStyles } from "react-circular-progressbar"
-// import "react-circular-progressbar/dist/styles.css"
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar"
+import "react-circular-progressbar/dist/styles.css"
 const MoviePage = ({
   movieInfo,
   directors,
@@ -9,6 +9,7 @@ const MoviePage = ({
   relatedMovies,
   trailerLink,
 }) => {
+  //extract the movie info
   const {
     title,
     release_date: releaseDate,
@@ -23,15 +24,7 @@ const MoviePage = ({
 
   const actorsItems = mainActors.map((actor, index) => (
     <div
-      //   class=" md:max-xl:flex
-      // mt-6 mb-6 mx-4
-      // bg-wihte-200
-      // rounded-lg
-      // w-50
-      // pt-6 pr-4 pb-2 pl-2 px-8 py-12
-      // transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110"
-      // class="grid gap-8 sm:max-xl:bg:blue-50 sm:max-xl:p-9 md:grid-cols-2 md:items-center md:text-left"
-      // key={index}
+      key={index}
       class="transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 text-center max-w-lg"
     >
       <Link href={`../actors/${actor.id}`} key={index}>
@@ -69,6 +62,7 @@ const MoviePage = ({
 
   return (
     <div className="bg-gradient-to-r from-slate-900 via-slate-700 to-slate-900">
+      {/* movie details container */}
       <div className="flex px-5 py-8 gap-6 text-slate-200">
         {!!poster && (
           <img
@@ -76,20 +70,21 @@ const MoviePage = ({
             className="w-[300px] h-[400] rounded-2xl"
           />
         )}
+        {/* movie info */}
         <div className="flex flex-col justify-evenly ">
           <p className="text-4xl ">{title}</p>
-          <p className="text-2xl">release in: {releaseDate.slice(0, 4)}</p>
+          <p className="text-2xl">Release In: {releaseDate.slice(0, 4)}</p>
           <p className="text-2xl">
             duration: {hours}
-            <span className="text-lg ">h </span>
+            <span className="text-lg ">H </span>
             {minutes}
-            <span className="text-lg ">m</span>
+            <span className="text-lg ">M</span>
           </p>
-          <p className="text-2xl">language: {language}</p>
+          <p className="text-2xl">Language: {language}</p>
           <p className="text-2xl">
-            rating:{" "}
+            Rating:{" "}
             <b>
-             {/* <CircularProgressbar
+             <CircularProgressbar
                 value={Math.round(rating * 10) / 10}
                 text={`${Math.round(rating * 10) / 10}`}
                 minValue={0}
@@ -98,23 +93,25 @@ const MoviePage = ({
                 backgroundPadding={5}
                 className="h-12 w-12 inline max-w-[80px]"
                 styles={buildStyles({ textSize: "40px" })}
-              /> */}
+              />
             </b>
           </p>
-          <p className="text-2xl">votings: {votings}</p>
+          <p className="text-2xl">Votings: {votings}</p>
           <p className="text-2xl">
-            Directed by: {directors.map((director) => director.name).join(", ")}
+            Directed By: {directors.map((director) => director.name).join(", ")}
           </p>
           <p className="text-xl max-w-l">
-            <span className="text-2xl font-semibold">overview:</span>
+            <span className="text-2xl font-semibold">Overview:</span>
             <br /> {overview}
           </p>
         </div>
       </div>
+    {/* movie actors list */}
       <div className="flex flex-col mx-20 gap-10 my-16 text-center">
         <p className="text-slate-100 text-4xl font-bold">Cast</p>
         <div className="flex gap-9 justify-around ">{actorsItems}</div>
       </div>
+      {/* similar movies list */}
       <div className="flex flex-col mx-20 gap-10 my-16 text-center">
         <p className="text-slate-100 text-4xl font-bold">Similar movies</p>
         <div className="flex gap-9 justify-around ">{relatedMoviesItems}</div>
@@ -122,7 +119,6 @@ const MoviePage = ({
 
       <div className="mx-20 mb-16 text-center">
         <p className=" text-slate-100 text-4xl font-bold mb-8">Trailer</p>
-
         {trailerLink && (
           <iframe
             src={trailerLink}
@@ -130,6 +126,7 @@ const MoviePage = ({
           ></iframe>
         )}
       </div>
+      
       {productionCompany && (
         <div className="flex flex-col mx-[500px] gap-5 pb-10 text-slate-100 font-semibold text-3xl ">
           <span className="mt-auto">Produced By:</span>
