@@ -1,11 +1,12 @@
 import Link from "next/link"
 export default function Home({ latestMovies }) {
-  const movies = latestMovies.map((movie, index) => {
+  //create movie cards array
+  const moviesCards = latestMovies.map((movie, index) => {
     return (
       <div
-        // key={index}
-        class=" md:max-xl:flex
-
+        key={index}
+        class="
+        md:max-xl:flex
         mt-6 mb-6 mx-3
         bg-wihte-200
         rounded-lg 
@@ -13,43 +14,36 @@ export default function Home({ latestMovies }) {
         pt-6 pr-4 pb-2 pl-2 px-8 py-12
         transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110"
       >
+        {/* move to the movie page */}
         <Link href={`./movies/${movie.id}`}>
           <img
-            class="rounded-lg 
-            hover:bg-sky-700
+            class="
+            rounded-lg 
             w-130
             h-80"
-            // width={"100px"}
             src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
           />
         </Link>
-        {
+        
           <p
-            class="  text-base 
-            font-bold
+            class=" 
+            text-lg 
+            font-semibold
             line-clamp-3 hover:line-clamp-4
             max-w-[150px] mx-auto"
           >
-            {" "}
-            {movie.title}{" "}
+            {movie.title}
           </p>
-        }
+        
       </div>
     )
   })
   return (
-    <div className="bg-slate-200 text-center">
-      {/* <Link
-        href={{
-          pathname: "./movies",
-          query: { page: 1, filter: "upcoming" },
-        }}
-      >
-        <p class="text-3xl font-bold no-line">Latest Movies</p>
-      </Link> */}
-      <h1 className="text-3xl pt-5">Latest Movies</h1>
-      <div class="flex flex-none flex-wrap flex-intial justify-center py-10">
-        {"loading..." && movies}
+    <div className="text-center text-slate-100
+    bg-gradient-to-r from-slate-900 via-slate-700 to-slate-900">
+      <h1 className="text-5xl pt-8  tracking-wider font-semibold ">Latest Movies</h1>
+      <div class="flex flex-none flex-wrap flex-intial justify-center py-6">
+        {"loading..." && moviesCards}
       </div>
     </div>
   )

@@ -1,7 +1,6 @@
 
 .footer {
     background-color: #333;
-    color: white;
     padding: 20px;
     text-align: center;
   }
@@ -29,7 +28,6 @@
   }
   
   .links a {
-    color: white;
     margin-right: 10px;
   }
   

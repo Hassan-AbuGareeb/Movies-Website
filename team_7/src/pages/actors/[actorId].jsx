@@ -1,6 +1,8 @@
 function ActorPage({ actorData }) {
+
+  // JSX structure for actor information
   const actorInfo = (
-    <div className="bg-slate-600 flex p-5 my-16 gap-6 text-slate-200">
+    <div className="bg-gradient-to-r from-slate-900 via-slate-700 to-slate-900 flex p-5 gap-6 text-slate-200">
       <img
         className="w-[300px] h-[400] rounded-2xl"
         src={`https://image.tmdb.org/t/p/original/${actorData.profile_path}`}

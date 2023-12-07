@@ -1,12 +1,12 @@
-.main {
+/* .main {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   padding: 6rem;
   min-height: 100vh;
-}
-
+} */
+/* 
 .description {
   display: inherit;
   justify-content: inherit;
@@ -16,15 +16,15 @@
   width: 100%;
   z-index: 2;
   font-family: var(--font-mono);
-}
-
+} */
+/* 
 .description a {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
-}
-
+} */
+/* 
 .description p {
   position: relative;
   margin: 0;
@@ -32,20 +32,20 @@
   background-color: rgba(var(--callout-rgb), 0.5);
   border: 1px solid rgba(var(--callout-border-rgb), 0.3);
   border-radius: var(--border-radius);
-}
-
+} */
+/* 
 .code {
   font-weight: 700;
   font-family: var(--font-mono);
-}
+} */
 
-.grid {
+/* .grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(25%, auto));
   max-width: var(--max-width);
   width: 100%;
-}
-
+} */
+/* 
 .card {
   padding: 1rem 1.2rem;
   border-radius: var(--border-radius);
@@ -54,13 +54,13 @@
   transition:
     background 200ms,
     border 200ms;
-}
-
+} */
+/* 
 .card span {
   display: inline-block;
   transition: transform 200ms;
-}
-
+} */
+/* 
 .card h2 {
   font-weight: 600;
   margin-bottom: 0.7rem;
@@ -108,9 +108,9 @@
 
 .logo {
   position: relative;
-}
+} */
 /* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
+/* @media (hover: hover) and (pointer: fine) {
   .card:hover {
     background: rgba(var(--card-rgb), 0.1);
     border: 1px solid rgba(var(--card-border-rgb), 0.15);
@@ -125,11 +125,11 @@
   .card:hover span {
     transform: none;
   }
-}
+} */
 
 /* Mobile */
-@media (max-width: 700px) {
-  .content {
+/* @media (max-width: 700px) { */
+  /* .content {
     padding: 4rem;
   }
 
@@ -202,10 +202,10 @@
     );
     z-index: 1;
   }
-}
+} */
 
 /* Tablet and Smaller Desktop */
-@media (min-width: 701px) and (max-width: 1120px) {
+/* @media (min-width: 701px) and (max-width: 1120px) {
   .grid {
     grid-template-columns: repeat(2, 50%);
   }
@@ -228,4 +228,4 @@
   to {
     transform: rotate(0deg);
   }
-}
+} */

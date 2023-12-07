@@ -1,7 +1,7 @@
 import React from "react"
 import Link from "next/link"
-import { CircularProgressbar, buildStyles } from "react-circular-progressbar"
-import "react-circular-progressbar/dist/styles.css"
+// import { CircularProgressbar, buildStyles } from "react-circular-progressbar"
+// import "react-circular-progressbar/dist/styles.css"
 const MoviePage = ({
   movieInfo,
   directors,
@@ -68,8 +68,8 @@ const MoviePage = ({
     production_companies.length !== 0 ? production_companies[0] : null
 
   return (
-    <div className="bg-slate-600 ">
-      <div className="bg-slate-600 flex p-5 my-16 gap-6 text-slate-200">
+    <div className="bg-gradient-to-r from-slate-900 via-slate-700 to-slate-900">
+      <div className="flex px-5 py-8 gap-6 text-slate-200">
         {!!poster && (
           <img
             src={`https://image.tmdb.org/t/p/original/${poster}`}
@@ -89,7 +89,7 @@ const MoviePage = ({
           <p className="text-2xl">
             rating:{" "}
             <b>
-              <CircularProgressbar
+             {/* <CircularProgressbar
                 value={Math.round(rating * 10) / 10}
                 text={`${Math.round(rating * 10) / 10}`}
                 minValue={0}
@@ -98,7 +98,7 @@ const MoviePage = ({
                 backgroundPadding={5}
                 className="h-12 w-12 inline max-w-[80px]"
                 styles={buildStyles({ textSize: "40px" })}
-              />
+              /> */}
             </b>
           </p>
           <p className="text-2xl">votings: {votings}</p>
@@ -111,16 +111,16 @@ const MoviePage = ({
           </p>
         </div>
       </div>
-      <div className="flex flex-col mx-20 gap-10 my-16">
+      <div className="flex flex-col mx-20 gap-10 my-16 text-center">
         <p className="text-slate-100 text-4xl font-bold">Cast</p>
         <div className="flex gap-9 justify-around ">{actorsItems}</div>
       </div>
-      <div className="flex flex-col mx-20 gap-10 my-16">
+      <div className="flex flex-col mx-20 gap-10 my-16 text-center">
         <p className="text-slate-100 text-4xl font-bold">Similar movies</p>
         <div className="flex gap-9 justify-around ">{relatedMoviesItems}</div>
       </div>
 
-      <div className="mx-20 mb-16 ">
+      <div className="mx-20 mb-16 text-center">
         <p className=" text-slate-100 text-4xl font-bold mb-8">Trailer</p>
 
         {trailerLink && (
@@ -131,8 +131,8 @@ const MoviePage = ({
         )}
       </div>
       {productionCompany && (
-        <div className="flex mx-20 pb-10 text-slate-100 font-semibold text-2xl ">
-          <span className="mt-auto">produced by:</span>
+        <div className="flex flex-col mx-[500px] gap-5 pb-10 text-slate-100 font-semibold text-3xl ">
+          <span className="mt-auto">Produced By:</span>
           <img
             src={`https://image.tmdb.org/t/p/original/${productionCompany.logo_path}`}
             alt={productionCompany.name}

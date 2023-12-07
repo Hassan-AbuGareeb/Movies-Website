@@ -7,7 +7,9 @@ import muna from "../../public/muna.jpg"
 
 const Footer = () => {
   return (
-    <footer className={styles.footer}>
+    <footer className={"bg-gradient-to-r from-slate-900 via-slate-700 to-slate-900 pt-10 pb-4 px-8"
+    }>
+      <div className="bg-gradient-to-r from-yellow-300 via-slate-600 to-yellow-300 mx-auto py-8 px-3 rounded-full shadow-lg text-balck ">
       <div className={styles.developers}>
         {/* Muna Al Haj Eid */}
         <div className={styles.developer}>
@@ -83,10 +85,13 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <p class="text-sm text-gray-500 sm:text-center dark:text-gray-400">
+      <br/>
+      <p class="text-balck text-xl font-semibold sm:text-center dark:text-gray-400">
         Connect with us on social media for the latest updates and more movie
         magic!
       </p>
+      </div>
+      
     </footer>
   )
 }

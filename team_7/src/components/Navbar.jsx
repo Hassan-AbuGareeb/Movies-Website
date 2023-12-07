@@ -2,17 +2,20 @@ import React, { useEffect, useState } from "react"
 import logo from "../../public/watching-a-movie.png"
 import Link from "next/link"
 
+  // State for handling search input and dropdown visibility
 const Navbar = () => {
   function onSearchChange(event) {
     setSearch(event.target.value)
   }
   const [search, setSearch] = useState("")
   const [genres, setGenres] = useState([])
+
   // const [showList, setShowList] = useState(false)
   const [showGenreList, setShowGenreList] = useState(false)
   const [showFiltersList, setShowFiltersList] = useState(false)
   const movieFilters = ["popular", "top_rated", "upcoming", "now_playing"]
 
+    // Fetch genres data from API using useEffect
   useEffect(() => {
     const options = {
       method: "GET",
@@ -31,13 +34,13 @@ const Navbar = () => {
 
   const genresList = (
     <div
-      className="bg-red-300 absolute bottom-[340px] left-44 z-50
-    overflow-y-scroll h-60 w-[125px] rounded-md
-     flex flex-col  "
+      className="bg-gradient-to-r from-yellow-300 to-slate-700 absolute bottom-[320px] left-40 z-50 
+    overflow-y-scroll h-60 w-[150px] rounded-md
+     flex flex-col "
     >
       {genres.map((genre) => (
-        <div className="hover:bg-slate-500 pl-2 py-3 text-center">
-          <Link
+        <div className="hover:bg-slate-500 hover:rounded-md px-2 py-3 text-center font-mono">
+          <Link 
             href={{
               pathname: "/movies",
               query: { page: 1, genre: genre.name, id: genre.id },
@@ -52,13 +55,13 @@ const Navbar = () => {
 
   //create filters List
   const movieFiltersList = (
-    <div
-      className="bg-red-300 absolute bottom-[388px] left-[305px] z-50
+    <div 
+      className="bg-gradient-to-r from-yellow-300 to-slate-700 absolute bottom-[325px] left-[300px] z-50 
     w-[115px] rounded-md flex flex-col"
     >
       {movieFilters.map((filter) => (
-        <div className="hover:bg-slate-500 px-auto py-3 text-center">
-          <Link
+        <div className="hover:bg-slate-500 hover:rounded-md  px-2 py-3 text-center ">
+          <Link 
             href={{
               pathname: "/movies",
               query: { page: 1, filter: filter },
@@ -75,17 +78,18 @@ const Navbar = () => {
   )
 
   return (
-    <nav className="text-black bg-slate-200 m-4 px-3 py-2 rounded-full shadow-lg">
+    <nav className="bg-gradient-to-r from-slate-900 via-slate-700 to-slate-900 p-5">
+      <div className="text-black bg-gradient-to-r from-yellow-300 via-slate-600 to-yellow-300  px-3 py-4 rounded-full shadow-lg">
       <div className="flex justify-between mx-5">
         <div className="flex justify-around items-center w-[500px]">
           {/* Logo */}
           <Link href={"/"}>
-            <img src={logo.src} alt="movie icons" className=" h-12 w-12" />
+            <img src={logo.src} alt="movie icons" className=" h-14 w-14" />
           </Link>
 
           {/* Genres Dropdown */}
           <div
-            className="text-black hover:cursor-pointer"
+            className="text-black hover:cursor-pointer text-xl font-semibold"
             onClick={() => {
               setShowGenreList((prev) => !prev)
               setShowFiltersList(false)
@@ -97,7 +101,7 @@ const Navbar = () => {
 
           {/* Movies Dropdown */}
           <div
-            className="text-black hover:cursor-pointer"
+            className="text-black hover:cursor-pointer text-xl font-semibold" 
             onClick={() => {
               setShowFiltersList((prev) => !prev)
               setShowGenreList(false)
@@ -114,7 +118,7 @@ const Navbar = () => {
               query: { page: 1 },
             }}
           >
-            <div>Actors</div>
+            <div class ="font-mono text-xl font-semibold">Actors</div>
           </Link>
         </div>
 
@@ -134,9 +138,10 @@ const Navbar = () => {
             }}
             onClick={() => setSearch("")}
           >
-            <div>Search</div>
+            <div class ="text-lg font-semibold"> Search</div>
           </Link>
         </div>
+      </div>
       </div>
     </nav>
   )

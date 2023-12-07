@@ -20,7 +20,7 @@ const Pagination = ({
   for (let i = minPage; i <= maxPage; i++) pagesNumbers.push(i)
   const pages = pagesNumbers.map((number) => {
     return (
-      <div key={number} style={{ width: "20px" }}>
+      <div key={number} className={`text-yellow-200 text-2xl w-10 h-10 bg-slate-700 rounded-xl hover:underline ${ +number=== +currentPage?"underline":"no-line"}`}>
         <Link
           href={{
             pathname: `/${destinationPage}`,
@@ -33,14 +33,14 @@ const Pagination = ({
             },
           }}
         >
-          {number}
+          <span >{number}</span>
         </Link>
       </div>
     )
   })
 
   return (
-    <div style={{ display: "flex", justifyContent: "space-evenly" }}>
+    <div className="flex justify-around w-[450px] mx-auto py-4 bg-yellow-300 rounded-xl" >
       {pages}
     </div>
   )

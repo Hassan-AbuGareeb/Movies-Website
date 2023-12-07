@@ -1,40 +1,32 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Team 7 Movies website
+Link to screenshot of our website: https://drive.google.com/file/d/17qWG7rJTJukNcZH_1AKxa6_meUBBlCkT/view?usp=sharing
 
-## Getting Started
+Description of the project: 
 
-First, run the development server:
+Navigate seamlessly through our user-friendly interface with these key pages:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1) Movies Page:
+Dive In: Explore dynamic movie lists, curated to preferences.
+Highlights: Discover top-rated films and seamlessly transition to in-depth details on the Single Movie Page.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2) Single Movie Page:
+Key Features: Director insights, top actors, related movie suggestions, official trailers, and production company details.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+3) Actors Page:
+Behind the Scenes: Delve into the profiles of popular actors with a simple click.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+4) Single Actor Page:
+Personalized Insights: Gain in-depth knowledge about favorite actors, from biographies to career highlights.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Tools used : 
+•    Next.js for the framework
+•    React for the UI components
+•    Tailwind CSS for styling
+•    Vercel for hosting and deployment
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Our Team: 
+1) Muna Al Haj Eid
+2) Jana Salah
+3) Hassan AbuGareeb
