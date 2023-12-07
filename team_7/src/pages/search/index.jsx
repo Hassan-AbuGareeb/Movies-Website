@@ -8,7 +8,7 @@ const SearchResults = ({
   numberOfPages,
   searchValue, 
 }) => {
-  const movieCards = movieResults.map((movie, index) => {
+  const movieCards = movieResults.map((movie) => {
     return (
       <div
       class="
@@ -133,7 +133,7 @@ export async function getServerSideProps({ query }) {
   )
   const movieResultsData = await movieResultsResponse.json()
   const movieResults = [...movieResultsData.results]
-  
+
   //get the actors search results
   const actorResultsResponse = await fetch(
     `https://api.themoviedb.org/3/search/person?query=${searchValue}&include_adult=false&language=en-US&page=${currentPage}`,
