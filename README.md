@@ -1,4 +1,5 @@
-Team 7 Movies website Link to screenshot of our website: https://drive.google.com/file/d/17qWG7rJTJukNcZH_1AKxa6_meUBBlCkT/view?usp=sharing
+Team 7 Movies website Link to the website:
+https://movie-project-team-7-ver1.vercel.app/
 
 Description of the project:
 
